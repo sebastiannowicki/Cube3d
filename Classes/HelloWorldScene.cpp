@@ -21,7 +21,7 @@ bool HelloWorld::init()
     }
       
     
-    
+    Director::getInstance()->setDisplayStats(false);
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     halfScreenWidth = visibleSize.width / 2;
@@ -37,7 +37,7 @@ bool HelloWorld::init()
     {
         for (int x = 0; x < xCubes; x++)
         {
-            float l = sqrt((x*x) + (y*y)) * 10;
+            float l = sqrt((x*x) + (y*y)) * 8;
             cubes[y*xCubes + x] = new Cube((xline * x + (xline/2)) + xline, (yline * y + (yline / 2)) + yCubes , l);
         }
     }

@@ -8,8 +8,7 @@ class Math3d
 {
     public:
         
-        void rotateX(point3d *p, float angle, int nop);
-        
+        void rotateX(point3d *p, float angle, int nop);        
         void rotateY(point3d *p, float angle, int nop);
         void rotateZ(point3d *p, float angle, int nop);
         void translate(point3d *p, float tx, float ty, float tz, int nop);
@@ -25,8 +24,9 @@ class Math3d
         void make_tables(void);
 
 private:
-            float tsin[3600];
-            float tcos[3600];
+    
+       float tsin[3600];
+       float tcos[3600];
 
 };
 #endif // __MATH3D_
