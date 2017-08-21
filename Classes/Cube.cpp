@@ -47,19 +47,11 @@ void Cube::Update(float time)
     math3d->rotateZ(zeroPoints, angle_z, NOP);
 
     math3d->translate(zeroPoints, 0, 0, 0, NOP);
-    Calculate2D(zeroPoints, NOP);    
-
-    /*
-    angle_x += deltaAngle; 
-    angle_y += deltaAngle; 
-    angle_z += deltaAngle;
-
-    */
+    Calculate2D(zeroPoints, NOP);       
 
     angle_x += (time * 50);
     angle_y += (time * 50);
     angle_z += (time * 50);
-
 }
 
 void Cube::ZeroAllPoints() 
@@ -100,33 +92,47 @@ void Cube::Draw(DrawNode *drawNode)
 
         if (ans < 0.0) 
         {
-            //line(bitmap, (int)(p[s[index][0]].x + 320), (int)(p[s[index][0]].y + 240), (int)(p[s[index][1]].x + 320), (int)(p[s[index][1]].y + 240), makecol16(255, 255, 255));
-            Vec2 vl1((int)(zeroPoints[pointConnections[index][0]].x + screenX) , (int)(zeroPoints[pointConnections[index][0]].y + screenY));
-            Vec2 vl2((int)(zeroPoints[pointConnections[index][1]].x + screenX) , (int)(zeroPoints[pointConnections[index][1]].y + screenY));
-            
-            drawNode->drawLine(vl1, vl2, Color4F::BLUE);
+            Vec2 points[8];
 
-            //line(bitmap, (int)(p[s[index][1]].x+320), (int)(p[s[index][1]].y+240), (int)(p[s[index][2]].x+320), (int)(p[s[index][2]].y+240), makecol16(255, 255, 255));
+            Vec2 vl1((int)(zeroPoints[pointConnections[index][0]].x + screenX), (int)(zeroPoints[pointConnections[index][0]].y + screenY));
+            Vec2 vl2((int)(zeroPoints[pointConnections[index][1]].x + screenX), (int)(zeroPoints[pointConnections[index][1]].y + screenY));
+            Vec2 vl3((int)(zeroPoints[pointConnections[index][1]].x + screenX), (int)(zeroPoints[pointConnections[index][1]].y + screenY));
+            Vec2 vl4((int)(zeroPoints[pointConnections[index][2]].x + screenX), (int)(zeroPoints[pointConnections[index][2]].y + screenY));
+            Vec2 vl5((int)(zeroPoints[pointConnections[index][2]].x + screenX), (int)(zeroPoints[pointConnections[index][2]].y + screenY));
+            Vec2 vl6((int)(zeroPoints[pointConnections[index][3]].x + screenX), (int)(zeroPoints[pointConnections[index][3]].y + screenY));
+            Vec2 vl7((int)(zeroPoints[pointConnections[index][3]].x + screenX), (int)(zeroPoints[pointConnections[index][3]].y + screenY));
+            Vec2 vl8((int)(zeroPoints[pointConnections[index][0]].x + screenX), (int)(zeroPoints[pointConnections[index][0]].y + screenY));            
+           
+            points[0] = vl1;
+            points[1] = vl2;
+            points[2] = vl3;
+            points[3] = vl4;
+            points[4] = vl5;
+            points[5] = vl6;
+            points[6] = vl7;
+            points[7] = vl8;
+
+            float colorVal = (float)abs((255.0 * ans));
+            Color4F color(colorVal, colorVal, colorVal, 1);
+
+            drawNode->drawPolygon(points, 8, color, 0, Color4F::GREEN);
+            /*
+            Vec2 vl1((int)(zeroPoints[pointConnections[index][0]].x + screenX) , (int)(zeroPoints[pointConnections[index][0]].y + screenY));
+            Vec2 vl2((int)(zeroPoints[pointConnections[index][1]].x + screenX) , (int)(zeroPoints[pointConnections[index][1]].y + screenY));            
+            drawNode->drawLine(vl1, vl2, Color4F::BLUE);            
 
             Vec2 vl3((int)(zeroPoints[pointConnections[index][1]].x + screenX) , (int)(zeroPoints[pointConnections[index][1]].y + screenY));
             Vec2 vl4((int)(zeroPoints[pointConnections[index][2]].x + screenX) , (int)(zeroPoints[pointConnections[index][2]].y + screenY));
-
-            drawNode->drawLine(vl3, vl4, Color4F::BLUE);
-
-
-            //line(bitmap, (int)(p[s[index][2]].x+320), (int)(p[s[index][2]].y+240), (int)(p[s[index][3]].x+320), (int)(p[s[index][3]].y+240), makecol16(255, 255, 255));
+            drawNode->drawLine(vl3, vl4, Color4F::BLUE);            
 
             Vec2 vl5 ((int)(zeroPoints[pointConnections[index][2]].x + screenX) , (int)(zeroPoints[pointConnections[index][2]].y + screenY));
             Vec2 vl6 ((int)(zeroPoints[pointConnections[index][3]].x + screenX) , (int)(zeroPoints[pointConnections[index][3]].y + screenY));
-
-            drawNode->drawLine(vl5, vl6, Color4F::BLUE);
-
-            //line(bitmap, (int)(p[s[index][3]].x+320), (int)(p[s[index][3]].y+240), (int)(p[s[index][0]].x+320), (int)(p[s[index][0]].y+240), makecol16(255, 255, 255));
+            drawNode->drawLine(vl5, vl6, Color4F::BLUE);            
 
             Vec2 vl7 ((int)(zeroPoints[pointConnections[index][3]].x + screenX) , (int)(zeroPoints[pointConnections[index][3]].y + screenY));
             Vec2 vl8 ((int)(zeroPoints[pointConnections[index][0]].x + screenX) , (int)(zeroPoints[pointConnections[index][0]].y + screenY));
-
             drawNode->drawLine(vl7, vl8, Color4F::BLUE);
+            */
         }
     }
 }
