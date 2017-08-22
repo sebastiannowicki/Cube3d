@@ -22,6 +22,7 @@ class Math3d
         int calc_index(float angle);
         float calc_angle(point3d v1, point3d v2);
         void make_tables(void);
+        float vector_length(point3d p);
 
 private:
     

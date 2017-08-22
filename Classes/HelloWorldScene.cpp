@@ -30,11 +30,8 @@ bool HelloWorld::init()
     drawNode = DrawNode::create();
     cubes = (Cube**)malloc(yCubes * xCubes * sizeof(Cube*));
 
-    //float xline = ((visibleSize.width - VALUE) / xCubes);
-    //float yline = ((visibleSize.height - VALUE) / yCubes);
-
-    float xline = 50;
-    float yline = 50;
+    float xline = ((visibleSize.width - VALUE) / xCubes);
+    float yline = ((visibleSize.height - VALUE) / yCubes);    
 
     for (int y = 0; y < yCubes; y++)
     {

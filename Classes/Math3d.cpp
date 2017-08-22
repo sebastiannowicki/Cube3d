@@ -173,3 +173,9 @@ float Math3d::calc_angle(point3d v1, point3d v2)
     angle *= (1.0 / piover180);
     return angle;
 }
+
+float Math3d::vector_length(point3d p) 
+{
+    float f = (p.x * p.x) + (p.y * p.y) + (p.z * p.z);
+    return sqrt(f);
+}

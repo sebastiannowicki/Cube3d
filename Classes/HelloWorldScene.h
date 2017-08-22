@@ -21,8 +21,8 @@ private:
     void update(float time);
     int halfScreenWidth = 0;
     int halfScreenHeight = 0;
-    int yCubes = 1;
-    int xCubes = 1;
+    int yCubes = 7;
+    int xCubes = 10;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

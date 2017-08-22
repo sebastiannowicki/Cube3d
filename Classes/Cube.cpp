@@ -83,16 +83,24 @@ void Cube::Calculate2D(point3d *points, int nop)
 
 void Cube::Draw(DrawNode *drawNode) 
 {
+    
+    Vec2 points[8];
+
     for (int index = 0; index < NOS; index++) 
     {
         point3d v1 = math3d->make_vector(zeroPoints[pointConnections[index][0]], zeroPoints[pointConnections[index][1]]);   //dwa wektory ze sciany
         point3d v2 = math3d->make_vector(zeroPoints[pointConnections[index][1]], zeroPoints[pointConnections[index][2]]);
         point3d v = math3d->normalize(math3d->cross_vectors(v1, v2));    //ich iloczyn wektotowy oraz normalizacja
-        float ans = math3d->dot_vectors(v, vz);
+        float ans = math3d->dot_vectors(v, vz);       
+        
 
         if (ans < 0.0) 
         {
-            Vec2 points[8];
+            
+            float cosAlfta = ans / math3d->vector_length(v) * math3d->vector_length(vz);
+            float angle = abs(acos(cosAlfta) * (1.0 / piover180));          
+            
+
 
             Vec2 vl1((int)(zeroPoints[pointConnections[index][0]].x + screenX), (int)(zeroPoints[pointConnections[index][0]].y + screenY));
             Vec2 vl2((int)(zeroPoints[pointConnections[index][1]].x + screenX), (int)(zeroPoints[pointConnections[index][1]].y + screenY));
@@ -112,8 +120,10 @@ void Cube::Draw(DrawNode *drawNode)
             points[6] = vl7;
             points[7] = vl8;
 
-            float colorVal = (float)abs((255.0 * ans));
-            Color4F color(colorVal, colorVal, colorVal, 1);
+            
+            float lightIns = (angle - 90) / 90.0;
+
+            Color4F color(lightIns, lightIns, lightIns, 1.0);
 
             drawNode->drawPolygon(points, 8, color, 0, Color4F::GREEN);
             /*
