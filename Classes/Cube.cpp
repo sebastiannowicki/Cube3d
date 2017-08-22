@@ -97,11 +97,13 @@ void Cube::Draw(DrawNode *drawNode)
         if (ans < 0.0) 
         {
             
+            //light
             float cosAlfta = ans / math3d->vector_length(v) * math3d->vector_length(vz);
-            float angle = abs(acos(cosAlfta) * (1.0 / piover180));          
-            
+            float angle = abs(acos(cosAlfta) * (1.0 / piover180));   
+            float lightIns = (angle - 90) / 90.0; //scale it from 0 to 1;
+            Color4F color(lightIns, lightIns, lightIns, 1.0);           
 
-
+            //do poygons
             Vec2 vl1((int)(zeroPoints[pointConnections[index][0]].x + screenX), (int)(zeroPoints[pointConnections[index][0]].y + screenY));
             Vec2 vl2((int)(zeroPoints[pointConnections[index][1]].x + screenX), (int)(zeroPoints[pointConnections[index][1]].y + screenY));
             Vec2 vl3((int)(zeroPoints[pointConnections[index][1]].x + screenX), (int)(zeroPoints[pointConnections[index][1]].y + screenY));
@@ -118,12 +120,7 @@ void Cube::Draw(DrawNode *drawNode)
             points[4] = vl5;
             points[5] = vl6;
             points[6] = vl7;
-            points[7] = vl8;
-
-            
-            float lightIns = (angle - 90) / 90.0;
-
-            Color4F color(lightIns, lightIns, lightIns, 1.0);
+            points[7] = vl8;            
 
             drawNode->drawPolygon(points, 8, color, 0, Color4F::GREEN);
             /*
